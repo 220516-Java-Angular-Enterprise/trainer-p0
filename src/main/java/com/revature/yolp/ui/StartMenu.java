@@ -67,11 +67,11 @@ public class StartMenu implements IMenu {
         String password;
         Scanner scan = new Scanner(System.in);
 
-        while (true) {
-            System.out.println("\nCreating account...");
+        completeExit:
+        {
+            while (true) {
+                System.out.println("\nCreating account...");
 
-            completeExit:
-            {
                 while (true) {
                     System.out.print("\nUsername: ");
                     username = scan.nextLine();
@@ -109,7 +109,6 @@ public class StartMenu implements IMenu {
                         switch (input) {
                             case "y":
                                 User user = new User(UUID.randomUUID().toString(), username, password, "DEFAULT");
-
                                 new MainMenu(user).start();
                                 break completeExit;
                             case "n":
