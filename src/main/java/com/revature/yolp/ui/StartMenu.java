@@ -31,7 +31,9 @@ public class StartMenu implements IMenu {
                 System.out.print("\nEnter: ");
                 String input = scan.nextLine();
 
+                /* Switch case, basically if else statement but more simple. */
                 switch (input) {
+                    /* If the user enters 1, 2, or x. */
                     case "1":
                         login();
                         break;
