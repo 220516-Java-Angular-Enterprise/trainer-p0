@@ -35,7 +35,8 @@ Add as much models as you would need for your design
 - Exception Handling
 - Input validation
 - Logging (to a file, no logging to the console)
-- At least 10 unit tests
+- All core methods in each class needs to be tested.
+  - No need to test constructors, getters, and setters.
 - Data should be persisted, (no data should be hard coded)
 - You should use a DB to store data
 - DB structure should be 3NF
