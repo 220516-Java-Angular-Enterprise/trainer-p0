@@ -9,7 +9,7 @@ public class MainDriver {
         UserService userService = new UserService();
 
         /* anonymous function. */
-        /* This anonymous function will disappear after the start method execute. */
+        /* This anonymous function will disappear after the start method is done executing. */
         new StartMenu(userService).start();
     }
 }
