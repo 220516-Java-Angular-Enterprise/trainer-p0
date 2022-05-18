@@ -2,9 +2,6 @@ package com.revature.yolp.ui;
 
 import com.revature.yolp.models.User;
 import com.revature.yolp.services.UserService;
-import com.revature.yolp.ui.IMenu;
-import com.revature.yolp.util.annotations.Inject;
-import sun.applet.Main;
 
 import java.util.Scanner;
 import java.util.UUID;
@@ -17,7 +14,7 @@ public class StartMenu implements IMenu {
     /* In this case we are relying on our userService class to retrieve data's from the database, and validate username, password etc. */
     /* This is why we are using dependency injection. */
     private final UserService userService;
-    
+
     public StartMenu(UserService userService) {
         this.userService = userService;
     }
