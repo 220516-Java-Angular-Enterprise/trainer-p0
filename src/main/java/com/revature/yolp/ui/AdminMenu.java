@@ -26,11 +26,13 @@ public class AdminMenu implements IMenu {
         exit:
         {
             while (true) {
-                System.out.println("\nWelcome to admin menu " + user.getUsername());
+                System.out.println("\n" + drawHorizontalLine("| Welcome to admin menu  |", user.getUsername()));
+                System.out.println("| Welcome to admin menu " + user.getUsername() + " |");
+                System.out.println(drawHorizontalLine("| Welcome to admin menu  |", user.getUsername()));
                 System.out.println("[1] Create restaurant");
-                System.out.println("[2] Delete restaurant");
-                System.out.println("[3] Update restaurant");
-                System.out.println("[4] Delete review");
+                System.out.println("[2] Update restaurant");
+                System.out.println("[3] Delete restaurant");
+                System.out.println("[4] Search restaurant");
                 System.out.println("[x] Sign out");
 
                 System.out.print("\nEnter: ");
@@ -90,5 +92,17 @@ public class AdminMenu implements IMenu {
                 }
             }
         }
+    }
+
+    private String drawHorizontalLine(String msg, String nameLength) {
+        int len = msg.length() + nameLength.length();
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < len; i++) {
+            if (i == 0 || i == len - 1) sb.append("+");
+            else sb.append("-");
+        }
+
+        return sb.toString();
     }
 }

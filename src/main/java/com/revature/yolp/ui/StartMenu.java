@@ -68,7 +68,9 @@ public class StartMenu implements IMenu {
 
     private void displayWelcomeMsg() {
         /* Welcome message. */
-        System.out.println("\nWelcome to Yolp!");
+        System.out.println("\n+------------------+");
+        System.out.println("| Welcome to Yolp! |");
+        System.out.println("+------------------+");
         System.out.println("[1] Login");
         System.out.println("[2] Signup");
         System.out.println("[x] Exit");
@@ -91,8 +93,10 @@ public class StartMenu implements IMenu {
             try {
                 user = userService.login(username, password);
 
-                if (user.getRole().equals("ADMIN")) new AdminMenu(user, new RestaurantService(new RestaurantDAO())).start();
-                else new MainMenu(user, new ReviewService(new ReviewDAO()), new RestaurantService(new RestaurantDAO())).start();
+                if (user.getRole().equals("ADMIN"))
+                    new AdminMenu(user, new RestaurantService(new RestaurantDAO())).start();
+                else
+                    new MainMenu(user, new UserService(new UserDAO()), new ReviewService(new ReviewDAO()), new RestaurantService(new RestaurantDAO())).start();
                 break;
             } catch (InvalidUserException e) {
                 System.out.println(e.getMessage());
@@ -108,7 +112,9 @@ public class StartMenu implements IMenu {
         completeExit:
         {
             while (true) {
-                System.out.println("\nCreating account...");
+                System.out.println("\n+---------------------+");
+                System.out.println("| Creating account... |");
+                System.out.println("+---------------------+");
 
                 while (true) {
                     /* Asking user to enter in username. */
@@ -151,8 +157,10 @@ public class StartMenu implements IMenu {
                 {
                     while (true) {
                         /* Asking user to confirm username and password. */
-                        System.out.println("\nPlease confirm your credentials (y/n)");
-                        System.out.println("\nUsername: " + username);
+                        System.out.println("\n+---------------------------------------+");
+                        System.out.println("| Please confirm your credentials (y/n) |");
+                        System.out.println("+---------------------------------------+");
+                        System.out.println("Username: " + username);
                         System.out.println("Password: " + password);
 
                         System.out.print("\nEnter: ");
@@ -168,7 +176,7 @@ public class StartMenu implements IMenu {
 
                                 /* Calling the anonymous class MainMenu.start() to navigate to the main menu screen. */
                                 /* We are also passing in a user object, so we know who is logged in. */
-                                new MainMenu(user, new ReviewService(new ReviewDAO()), new RestaurantService(new RestaurantDAO())).start();
+                                new MainMenu(user, new UserService(new UserDAO()), new ReviewService(new ReviewDAO()), new RestaurantService(new RestaurantDAO())).start();
 
                                 /* Break out of the entire loop. */
                                 break completeExit;

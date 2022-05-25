@@ -42,7 +42,21 @@ public class UserDAO implements CrudDAO<User> {
 
     @Override
     public User getById(String id) {
-        return null;
+        User user = new User();
+
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM users where id = ?");
+            ps.setString(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                user = new User(rs.getString("id"), rs.getString("username"), rs.getString("password"), rs.getString("role"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("An error occurred when tyring to get data from to the database.");
+        }
+
+        return user;
     }
 
     @Override
@@ -80,7 +94,7 @@ public class UserDAO implements CrudDAO<User> {
                 // String username = rs.getString("username");
                 // usernames.add(username);
 
-                usernames.add(rs.getString("username"));
+                usernames.add(rs.getString("username").toLowerCase());
             }
         } catch (SQLException e) {
             throw new RuntimeException("An error occurred when tyring to get data from to the database.");

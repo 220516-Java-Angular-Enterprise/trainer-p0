@@ -48,6 +48,10 @@ public class UserService {
         userDAO.save(user);
     }
 
+    public User getUserById(String id) {
+        return userDAO.getById(id);
+    }
+
     public boolean isValidUsername(String username) {
         if (username.matches("^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$")) return true;
         throw new InvalidUserException("Invalid username. Username needs to be 8-20 characters long.");
