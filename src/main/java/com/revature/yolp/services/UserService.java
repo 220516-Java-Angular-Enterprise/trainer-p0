@@ -38,7 +38,6 @@ public class UserService {
             }
             if (u.getPassword().equals(password)) {
                 user.setPassword(u.getPassword());
-                break;
             }
         }
 

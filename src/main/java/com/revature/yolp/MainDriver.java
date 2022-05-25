@@ -1,6 +1,8 @@
 package com.revature.yolp;
 
-import com.revature.yolp.util.database.DatabaseConnection;
+import com.revature.yolp.daos.UserDAO;
+import com.revature.yolp.services.UserService;
+import com.revature.yolp.ui.StartMenu;
 
 /* This class purpose is to start our application. */
 public class MainDriver {
@@ -10,8 +12,6 @@ public class MainDriver {
 
         /* anonymous function. */
         /* This anonymous function will disappear after the start method is done executing. */
-        //new StartMenu(new UserService(new UserDAO())).start();
-
-        System.out.println(DatabaseConnection.getCon());
+        new StartMenu(new UserService(new UserDAO())).start();
     }
 }

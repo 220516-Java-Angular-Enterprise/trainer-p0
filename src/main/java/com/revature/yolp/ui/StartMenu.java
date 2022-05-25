@@ -1,6 +1,11 @@
 package com.revature.yolp.ui;
 
+import com.revature.yolp.daos.RestaurantDAO;
+import com.revature.yolp.daos.ReviewDAO;
+import com.revature.yolp.daos.UserDAO;
 import com.revature.yolp.models.User;
+import com.revature.yolp.services.RestaurantService;
+import com.revature.yolp.services.ReviewService;
 import com.revature.yolp.services.UserService;
 import com.revature.yolp.util.annotations.Inject;
 import com.revature.yolp.util.custom_exceptions.InvalidUserException;
@@ -86,8 +91,8 @@ public class StartMenu implements IMenu {
             try {
                 user = userService.login(username, password);
 
-                if (user.getRole().equals("ADMIN")) new AdminMenu().start();
-                else new MainMenu(user).start();
+                if (user.getRole().equals("ADMIN")) new AdminMenu(user, new RestaurantService(new RestaurantDAO())).start();
+                else new MainMenu(user, new ReviewService(new ReviewDAO()), new RestaurantService(new RestaurantDAO())).start();
                 break;
             } catch (InvalidUserException e) {
                 System.out.println(e.getMessage());
@@ -163,7 +168,7 @@ public class StartMenu implements IMenu {
 
                                 /* Calling the anonymous class MainMenu.start() to navigate to the main menu screen. */
                                 /* We are also passing in a user object, so we know who is logged in. */
-                                new MainMenu(user).start();
+                                new MainMenu(user, new ReviewService(new ReviewDAO()), new RestaurantService(new RestaurantDAO())).start();
 
                                 /* Break out of the entire loop. */
                                 break completeExit;

@@ -51,11 +51,6 @@ public class Restaurant {
 
     @Override
     public String toString() {
-        return "Restaurant{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                '}';
+        return "Name: " + name + "\nCity: " + city + "\nState: " + state;
     }
 }
