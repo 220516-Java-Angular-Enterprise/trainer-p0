@@ -83,8 +83,10 @@ public class StartMenu implements IMenu {
         Scanner scan = new Scanner(System.in);
 
         while (true) {
-            System.out.println("\nLogging in...");
-            System.out.print("\nUsername: ");
+            System.out.println("\n+---------------+");
+            System.out.println("| Logging in... |");
+            System.out.println("+---------------+");
+            System.out.print("Username: ");
             username = scan.nextLine();
 
             System.out.print("\nPassword: ");

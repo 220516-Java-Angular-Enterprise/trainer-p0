@@ -64,11 +64,13 @@ public class AdminMenu implements IMenu {
         exit:
         {
             while (true) {
-                System.out.println("\nCreating restaurant...");
+                System.out.println("\n+------------------------+");
+                System.out.println("| Creating restaurant... |");
+                System.out.println("+------------------------+");
 
                 resto.setId(UUID.randomUUID().toString());
 
-                System.out.print("\nName: ");
+                System.out.print("Name: ");
                 resto.setName(scan.nextLine());
 
                 System.out.print("\nCity: ");
