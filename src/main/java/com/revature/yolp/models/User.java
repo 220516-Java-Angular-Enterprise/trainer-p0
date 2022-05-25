@@ -1,4 +1,4 @@
-package com.revature.yolp.models;
+package com.revature.project0.models;
 
 public class User {
     private String id;
