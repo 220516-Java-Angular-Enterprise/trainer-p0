@@ -5,6 +5,7 @@ import com.revature.yolp.models.User;
 import com.revature.yolp.services.RestaurantService;
 import com.revature.yolp.util.annotations.Inject;
 
+import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -42,8 +43,10 @@ public class AdminMenu implements IMenu {
                         createRestaurant();
                         break;
                     case "2":
+                        updateRestaurant();
                         break;
                     case "3":
+                        deleteRestaurant();
                         break;
                     case "4":
                         break;
@@ -93,6 +96,65 @@ public class AdminMenu implements IMenu {
                         break;
                 }
             }
+        }
+    }
+
+    private void updateRestaurant() {
+        Scanner scan = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\n+-------------------------------------------+");
+            System.out.println("| Please select a restaurant to update name |");
+            System.out.println("+-------------------------------------------+");
+            List<Restaurant> restaurants = restaurantService.getAllResto();
+
+            for (int i = 0; i < restaurants.size(); i++) {
+                System.out.println("[" + (i + 1) + "] " + restaurants.get(i).getName());
+            }
+
+            System.out.print("\nEnter: ");
+            int input = scan.nextInt() - 1;
+            scan.nextLine();
+
+            if (input >= 0 && input < restaurants.size()) {
+                Restaurant selectedResto = restaurants.get(input);
+
+                System.out.print("\nNew name: ");
+                String name = scan.nextLine();
+
+                if (restaurantService.updateName(name, selectedResto.getId())) {
+                    System.out.println("\nUpdate was successful!");
+                    break;
+                }
+            } else System.out.println("\nInvalid restaurant selection!");
+        }
+    }
+
+    private void deleteRestaurant() {
+        Scanner scan = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\n+--------------------------------------+");
+            System.out.println("| Please select a restaurant to delete |");
+            System.out.println("+--------------------------------------+");
+            List<Restaurant> restaurants = restaurantService.getAllResto();
+
+            for (int i = 0; i < restaurants.size(); i++) {
+                System.out.println("[" + (i + 1) + "] " + restaurants.get(i).getName());
+            }
+
+            System.out.print("\nEnter: ");
+            int input = scan.nextInt() - 1;
+            scan.nextLine();
+
+            if (input >= 0 && input < restaurants.size()) {
+                Restaurant selectedResto = restaurants.get(input);
+
+                if (restaurantService.deleteResto(selectedResto.getId())) {
+                    System.out.println("\nDeletion was successful!");
+                    break;
+                }
+            } else System.out.println("\nInvalid restaurant selection!");
         }
     }
 

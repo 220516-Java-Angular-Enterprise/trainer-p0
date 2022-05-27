@@ -1,6 +1,7 @@
 package com.revature.yolp.daos;
 
 import com.revature.yolp.models.Restaurant;
+import com.revature.yolp.util.custom_exceptions.InvalidSQLException;
 import com.revature.yolp.util.database.DatabaseConnection;
 
 import java.sql.Connection;
@@ -35,7 +36,13 @@ public class RestaurantDAO implements CrudDAO<Restaurant> {
 
     @Override
     public void delete(String id) {
-
+        try {
+            PreparedStatement ps = con.prepareStatement("DELETE FROM restaurants WHERE id = ?");
+            ps.setString(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new InvalidSQLException("An error occurred when tyring to update data from to the database.");
+        }
     }
 
     @Override
@@ -62,5 +69,14 @@ public class RestaurantDAO implements CrudDAO<Restaurant> {
         return restaurants;
     }
 
-
+    public void updateRestoName(String name, String id) {
+        try {
+            PreparedStatement ps = con.prepareStatement("UPDATE restaurants SET name = ? WHERE id = ?");
+            ps.setString(1, name);
+            ps.setString(2, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new InvalidSQLException("An error occurred when tyring to update data from to the database.");
+        }
+    }
 }
